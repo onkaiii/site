@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="onkai.films — audiovisual estrategico para marcas que querem ser lembradas.">
+<title>onkai.films</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&display=swap">
+<style>
+/* ---------- fontes da marca ---------- */
+@font-face{font-family:"Lemon Milk";src:url("assets/LEMONMILK-Light.otf") format("opentype");font-weight:300;font-display:swap}
+@font-face{font-family:"Lemon Milk";src:url("assets/LEMONMILK-Regular.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Lemon Milk";src:url("assets/LEMONMILK-Bold.otf") format("opentype");font-weight:700;font-display:swap}
+
+/* ---------- tokens ---------- */
+:root{
+  --ink:#0B0B0C;
+  --ink-2:#141416;
+  --ink-3:#1C1C1F;
+  --bone:#EFEBE4;
+  --bone-ink:#171614;
+  --text:#E9E6E1;
+  --dim:#8A8781;
+  --sun:#E0A24A;
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.22);
+
+  /* chapa de legibilidade: usada sempre que texto branco cai sobre foto */
+  --scrim-bottom:linear-gradient(180deg,rgba(11,11,12,0) 0%,rgba(11,11,12,.30) 34%,rgba(11,11,12,.74) 66%,rgba(11,11,12,.94) 100%);
+  --scrim-tint:rgba(11,11,12,.22);
+
+  --display:"Lemon Milk","Futura","Century Gothic","Trebuchet MS",sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+
+  --pad:clamp(20px,5vw,64px);
+  --max:1240px;
+
+  --t-fast:.25s cubic-bezier(.2,.7,.3,1);
+  --t-slow:.7s cubic-bezier(.2,.7,.3,1);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--body);
+  font-weight:300;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:2px}
+
+/* ---------- utilitários de tipo ---------- */
+.eyebrow{
+  font-family:var(--body);
+  font-size:.688rem;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--dim);
+  display:flex;align-items:center;gap:.6em;
+}
+.eyebrow b{color:var(--sun);font-weight:500;font-variant-numeric:tabular-nums}
+h1,h2,h3,.disp{
+  font-family:var(--display);
+  font-weight:700;
+  text-transform:uppercase;
+  line-height:1.04;
+  letter-spacing:-.005em;
+  text-wrap:balance;
+  margin:0;
+}
+h2{font-size:clamp(1.6rem,3.6vw,2.6rem)}
+p{margin:0}
+.lede{color:var(--dim);max-width:52ch;font-size:.95rem}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
+section{position:relative}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(22px);transition:opacity var(--t-slow),transform var(--t-slow)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  *{animation:none!important}
+}
+
+/* ---------- 01 navbar ---------- */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;
+  padding:18px var(--pad);
+  transition:background var(--t-fast),border-color var(--t-fast),padding var(--t-fast);
+  border-bottom:1px solid transparent;
+}
+.nav.stuck{
+  background:rgba(11,11,12,.86);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom-color:var(--line);
+  padding-block:12px;
+}
+.nav .logo{height:26px;width:auto;filter:none}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+  color:var(--text);opacity:.72;position:relative;padding-block:4px;
+  transition:opacity var(--t-fast);
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--sun);
+  transition:right var(--t-fast);
+}
+.nav-links a:hover{opacity:1}
+.nav-links a:hover::after,.nav-links a[aria-current="true"]::after{right:0}
+.btn{
+  display:inline-flex;align-items:center;gap:.6em;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+  padding:12px 20px;border:1px solid var(--line-strong);
+  transition:background var(--t-fast),color var(--t-fast),border-color var(--t-fast),transform var(--t-fast);
+}
+.btn:hover{background:var(--text);color:var(--ink);border-color:var(--text)}
+.btn.solid{background:var(--text);color:var(--ink);border-color:var(--text)}
+.btn.solid:hover{background:transparent;color:var(--text)}
+.btn .ar{transition:transform var(--t-fast)}
+.btn:hover .ar{transform:translateX(4px)}
+.burger{display:none;width:34px;height:34px;align-items:center;justify-content:center}
+.burger span{display:block;width:20px;height:1px;background:var(--text);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:1px;background:var(--text);transition:transform var(--t-fast)}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+body.menu .burger span{background:transparent}
+body.menu .burger span::before{transform:translateY(6px) rotate(45deg)}
+body.menu .burger span::after{transform:translateY(-6px) rotate(-45deg)}
+
+.drawer{
+  position:fixed;inset:0;z-index:55;background:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;gap:8px;
+  padding:0 var(--pad);
+  transform:translateY(-100%);visibility:hidden;
+  transition:transform .45s cubic-bezier(.2,.7,.3,1),visibility .45s;
+}
+body.menu .drawer{transform:none;visibility:visible}
+.drawer a{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:2rem;padding:10px 0;border-bottom:1px solid var(--line)}
+
+/* ---------- 02 hero ---------- */
+.hero{min-height:100svh;display:grid;align-items:end;overflow:hidden;background:var(--ink)}
+.hero-media{position:absolute;inset:0;overflow:hidden}
+.hero-media img{width:100%;height:100%;object-fit:cover;animation:kb 26s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+.hero-media::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(11,11,12,.80) 0%,rgba(11,11,12,.30) 30%,rgba(11,11,12,.70) 72%,var(--ink) 100%),
+    linear-gradient(90deg,rgba(11,11,12,.62) 0%,rgba(11,11,12,.20) 52%,rgba(11,11,12,0) 100%),
+    var(--scrim-tint);
+}
+.hero-in{position:relative;z-index:2;text-shadow:0 1px 24px rgba(11,11,12,.55);padding-block:0 clamp(48px,9vh,110px)}
+.hero h1{font-size:clamp(2.3rem,7.2vw,5.2rem);margin-block:14px 20px}
+.hero .lede{font-size:1rem;max-width:36ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.scrollcue{
+  position:absolute;left:var(--pad);bottom:22px;z-index:3;
+  font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
+  display:flex;align-items:center;gap:10px;
+}
+.scrollcue i{display:block;width:38px;height:1px;background:var(--line-strong);position:relative;overflow:hidden}
+.scrollcue i::after{content:"";position:absolute;inset:0;background:var(--sun);animation:sweep 2.6s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+
+/* ---------- 03 / 06 frases ---------- */
+.statement{padding-block:clamp(70px,11vw,132px);text-align:center;background:var(--ink-2)}
+.statement .disp{font-size:clamp(1.3rem,3.1vw,2.2rem);line-height:1.28;letter-spacing:.02em;font-weight:400}
+.statement .disp em{font-style:normal;color:var(--dim)}
+.statement .disp b{font-weight:700}
+
+/* ---------- cabeçalho de seção ---------- */
+.sechead{display:flex;flex-direction:column;gap:14px;padding-block:clamp(56px,8vw,96px) 34px}
+.sechead h2{max-width:16ch}
+
+/* ---------- 05 grid projetos ---------- */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.card{
+  position:relative;display:block;overflow:hidden;background:var(--ink-2);
+  aspect-ratio:16/10;
+}
+.card.wide{grid-column:1 / -1;aspect-ratio:21/8}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.3,1),filter var(--t-slow)}
+.card::after{
+  content:"";position:absolute;inset:0;
+  background:var(--scrim-bottom),var(--scrim-tint);
+  transition:opacity var(--t-slow);
+}
+.card::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,11,12,0) 52%,rgba(11,11,12,.55) 100%);
+  opacity:0;transition:opacity var(--t-slow);
+}
+.card:hover img{transform:scale(1.06)}
+.card:hover::before{opacity:1}
+.card-in{
+  position:absolute;z-index:2;inset:auto 0 0 0;
+  padding:clamp(18px,2.6vw,30px);
+  display:flex;flex-direction:column;gap:10px;align-items:flex-start;
+}
+.card-in h3{font-size:clamp(1.05rem,2.1vw,1.55rem)}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{
+  font-size:.625rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text);
+  opacity:.62;border:1px solid var(--line-strong);padding:4px 9px;
+}
+.golink{
+  display:inline-flex;align-items:center;gap:.6em;
+  font-size:.688rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+  color:var(--text);
+  padding-bottom:3px;border-bottom:1px solid transparent;
+  transition:border-color var(--t-fast),color var(--t-fast);
+}
+.card:hover .golink{border-bottom-color:var(--sun);color:var(--sun)}
+.card:hover .golink .ar{transform:translateX(5px)}
+.golink .ar{transition:transform var(--t-fast)}
+
+/* ---------- 07 serviços ---------- */
+.services{padding-bottom:clamp(60px,9vw,104px)}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-top:1px solid var(--line)}
+.svc{padding:30px 26px 34px;background:var(--ink);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.svc:last-child{border-right:0}
+.svc svg{width:26px;height:26px;stroke:var(--sun);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font-size:.85rem;letter-spacing:.1em}
+.svc p{color:var(--dim);font-size:.875rem}
+.svc ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:5px}
+.svc li{font-size:.688rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);opacity:.72}
+.svc-lead{display:grid;gap:14px;align-content:start;padding-block:30px}
+
+/* ---------- 08 sobre ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;background:var(--ink-2)}
+.about-img{position:relative;min-height:420px;overflow:hidden}
+.about-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.about-img::after{content:"";position:absolute;inset:0;background:var(--scrim-tint)}
+.about-txt{padding:clamp(38px,6vw,84px);display:flex;flex-direction:column;gap:20px;justify-content:center}
+.about-txt h2{max-width:18ch}
+.about-txt p{color:var(--dim);max-width:46ch;font-size:.938rem}
+
+/* ---------- 09 estrutura (faixa clara) ---------- */
+.structure{background:var(--bone);color:var(--bone-ink);padding-block:clamp(56px,8vw,92px)}
+.structure .eyebrow{color:#6C6862}
+.structure .eyebrow b{color:#A9762A}
+.structure-in{display:grid;grid-template-columns:.9fr 2.1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.stat{display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(23,22,20,.18);padding-top:14px}
+.stat .n{font-family:var(--display);font-weight:700;font-size:1.9rem;font-variant-numeric:tabular-nums;line-height:1}
+.stat h3{font-size:.75rem;letter-spacing:.14em}
+.stat p{font-size:.813rem;color:#5E5A54}
+
+/* ---------- 10 processo ---------- */
+.process{padding-block:clamp(56px,8vw,96px)}
+.process-in{display:grid;grid-template-columns:.9fr 2.1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+.step{position:relative;padding:0 18px 0 0;display:flex;flex-direction:column;gap:8px}
+.step .n{
+  font-family:var(--display);font-weight:700;font-size:1.15rem;color:var(--sun);
+  font-variant-numeric:tabular-nums;line-height:1;
+}
+.step h3{font-size:.75rem;letter-spacing:.14em}
+.step p{font-size:.813rem;color:var(--dim)}
+.step .rail{position:absolute;top:7px;left:34px;right:8px;height:1px;background:var(--line)}
+.step .rail::after{
+  content:"";position:absolute;inset:0;background:var(--sun);transform-origin:left;
+  transform:scaleX(0);transition:transform .8s cubic-bezier(.2,.7,.3,1);
+}
+.steps.in .step .rail::after{transform:scaleX(1)}
+.steps.in .step:nth-child(2) .rail::after{transition-delay:.12s}
+.steps.in .step:nth-child(3) .rail::after{transition-delay:.24s}
+.steps.in .step:nth-child(4) .rail::after{transition-delay:.36s}
+.step:last-child .rail{display:none}
+
+/* ---------- 11 cta ---------- */
+.cta{position:relative;min-height:clamp(360px,52vh,520px);display:grid;align-items:center;overflow:hidden}
+.cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cta::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(11,11,12,.94) 0%,rgba(11,11,12,.86) 34%,rgba(11,11,12,.52) 68%,rgba(11,11,12,.34) 100%),
+  linear-gradient(180deg,rgba(11,11,12,.42) 0%,rgba(11,11,12,0) 34%,rgba(11,11,12,.42) 100%)}
+.cta-in{position:relative;z-index:2;text-shadow:0 1px 22px rgba(11,11,12,.6);display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.cta h2{font-size:clamp(1.45rem,3.2vw,2.35rem);max-width:26ch;line-height:1.1}
+
+/* ---------- 12 formulário ---------- */
+.contact{background:var(--ink-2);padding-block:clamp(56px,8vw,92px)}
+.contact-in{display:grid;grid-template-columns:.9fr 2.1fr;gap:clamp(28px,5vw,64px);align-items:start}
+form{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.f{display:flex;flex-direction:column;gap:8px}
+.f.span2{grid-column:span 2}
+.f.span3{grid-column:span 3}
+label{font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+input,select,textarea{
+  font:inherit;font-size:.875rem;color:var(--text);
+  background:transparent;border:0;border-bottom:1px solid var(--line-strong);
+  padding:9px 0;border-radius:0;
+  transition:border-color var(--t-fast);
+}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--dim) 50%),linear-gradient(135deg,var(--dim) 50%,transparent 50%);background-position:calc(100% - 11px) 18px,calc(100% - 6px) 18px;background-size:5px 5px;background-repeat:no-repeat}
+select option{background:var(--ink-2);color:var(--text)}
+textarea{resize:vertical;min-height:74px}
+input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--sun)}
+input::placeholder,textarea::placeholder{color:#5B5955}
+.f.err input,.f.err select,.f.err textarea{border-bottom-color:#C4553F}
+.msg{font-size:.688rem;color:#C4553F;min-height:1em}
+.f-actions{grid-column:span 3;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.sent{
+  font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sun);
+  opacity:0;transform:translateX(-6px);transition:opacity var(--t-fast),transform var(--t-fast);
+}
+.sent.on{opacity:1;transform:none}
+
+/* ---------- 13 footer ---------- */
+footer{padding-block:38px;border-top:1px solid var(--line);background:var(--ink)}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap}
+.foot .logo{height:24px}
+.foot .tag-line{font-size:.75rem;color:var(--dim);margin-top:9px;line-height:1.5}
+.socials{display:flex;gap:26px}
+.socials a{display:inline-flex;align-items:center;gap:.6em;font-size:.688rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);transition:color var(--t-fast)}
+.socials a:hover{color:var(--text)}
+.socials svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.copy{font-size:.688rem;letter-spacing:.14em;text-transform:uppercase;color:#57554F}
+
+/* ---------- modo anotações ---------- */
+.annot{
+  position:fixed;right:18px;bottom:18px;z-index:70;
+  display:inline-flex;align-items:center;gap:.7em;
+  font-size:.688rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+  padding:11px 17px;border:1px solid var(--line-strong);
+  background:rgba(11,11,12,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  transition:background var(--t-fast),color var(--t-fast),border-color var(--t-fast);
+}
+.annot:hover{border-color:var(--sun);color:var(--sun)}
+.annot .dot{width:6px;height:6px;background:#4A4844;border-radius:50%;transition:background var(--t-fast)}
+body.annot-on .annot .dot{background:var(--sun)}
+[data-step]{position:relative}
+[data-step]::before{
+  content:attr(data-step);
+  position:absolute;top:0;left:0;z-index:40;
+  font-family:var(--body);font-size:.625rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink);background:var(--sun);
+  padding:6px 11px;
+  opacity:0;transform:translateY(-4px);pointer-events:none;
+  transition:opacity var(--t-fast),transform var(--t-fast);
+}
+body.annot-on [data-step]{outline:1px dashed rgba(224,162,74,.55);outline-offset:-1px}
+body.annot-on [data-step]::before{opacity:1;transform:none}
+
+/* ---------- responsivo ---------- */
+@media (max-width:1000px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .svc:nth-child(2){border-right:0}
+  .structure-in,.process-in,.contact-in{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr;gap:22px}
+  .step .rail{display:none}
+  .about{grid-template-columns:1fr}
+  .about-img{min-height:290px}
+}
+@media (max-width:720px){
+  .nav-links,.nav .btn{display:none}
+  .hero-in{padding-bottom:clamp(86px,15vh,130px)}
+  .annot{right:12px;bottom:12px;padding:9px 13px;font-size:.625rem;letter-spacing:.12em}
+  .burger{display:flex}
+  .grid{grid-template-columns:1fr}
+  .card,.card.wide{aspect-ratio:4/3}
+  .svc-grid{grid-template-columns:1fr}
+  .svc{border-right:0;border-bottom:1px solid var(--line)}
+  .stats{grid-template-columns:1fr}
+  form{grid-template-columns:1fr}
+  .f.span2,.f.span3,.f-actions{grid-column:span 1}
+  .foot{flex-direction:column;align-items:flex-start}
+}
+</style>
+
+</head>
+<body>
+<!-- 01 NAVBAR -->
+<header class="nav" id="nav" data-step="01 · Navbar">
+  <a href="#topo" aria-label="onkai.films — início"><img class="logo" src="assets/logo.png" alt="onkai.films"></a>
+  <nav class="nav-links">
+    <a href="#projetos">Projetos</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <a class="btn" href="#contato">Orçamento <span class="ar">→</span></a>
+  <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+</header>
+
+<div class="drawer" id="drawer">
+  <a href="#projetos">Projetos</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#contato">Contato</a>
+  <a href="#contato" style="color:var(--sun);border-bottom:0">Orçamento →</a>
+</div>
+
+<!-- 02 HERO -->
+<section class="hero" id="topo" data-step="02 · Hero">
+  <div class="hero-media">
+    <img src="assets/hero.jpg" alt="Veleiro ao pôr do sol captado com drone em Ilhabela">
+  </div>
+  <div class="hero-in wrap">
+    <p class="eyebrow"><b>onkai.films</b> — Audiovisual estratégico</p>
+    <h1>Marcas que<br>querem ser lembradas.</h1>
+    <p class="lede">Foto, vídeo e conteúdo audiovisual para marcas, empresas e experiências.</p>
+    <div class="hero-cta">
+      <a class="btn solid" href="#projetos">Ver projetos</a>
+      <a class="btn" href="#contato">Solicitar orçamento</a>
+    </div>
+  </div>
+  <div class="scrollcue"><i></i> Role</div>
+</section>
+
+<!-- 03 FRASE DE IMPACTO -->
+<section class="statement" data-step="03 · Frase">
+  <div class="wrap">
+    <p class="disp rv">Sua marca merece mais do que apenas aparecer.<br><em>Ela precisa impactar.</em></p>
+  </div>
+</section>
+
+<!-- 04 + 05 PROJETOS -->
+<section id="projetos" data-step="04 · Projetos">
+  <div class="wrap sechead rv">
+    <p class="eyebrow"><b>01</b> / Projetos</p>
+    <h2>Trabalhos selecionados</h2>
+    <p class="lede">Uma seleção de projetos desenvolvidos para diferentes marcas, eventos e segmentos. Cada capa abre a galeria completa em alta resolução.</p>
+  </div>
+  <div class="wrap">
+    <div class="grid">
+      <a class="card rv" href="https://galleries.vidflow.co/omklh1gl" target="_blank" rel="noopener">
+        <img src="assets/p-sivi.jpg" alt="Vista aérea do público na estrutura do evento SIVI em Ilhabela">
+        <div class="card-in">
+          <p class="eyebrow">Semana Internacional da Vela</p>
+          <h3>SIVI Ilhabela</h3>
+          <div class="tags"><span class="tag">Foto</span><span class="tag">Vídeo</span><span class="tag">Drone</span></div>
+          <span class="golink">Ver projeto <span class="ar">→</span></span>
+        </div>
+      </a>
+      <a class="card rv" href="https://galleries.vidflow.co/wccr69le" target="_blank" rel="noopener">
+        <img src="assets/p-davinci.jpg" alt="Tripulação do Da Vinci Sailing Team trabalhando a bordo">
+        <div class="card-in">
+          <p class="eyebrow">Cobertura a bordo</p>
+          <h3>Da Vinci Sailing Team</h3>
+          <div class="tags"><span class="tag">Foto</span><span class="tag">Vídeo</span><span class="tag">Drone</span></div>
+          <span class="golink">Ver projeto <span class="ar">→</span></span>
+        </div>
+      </a>
+      <a class="card rv" href="https://galleries.vidflow.co/ebfg8tv3" target="_blank" rel="noopener">
+        <img src="assets/p-lake.jpg" alt="Hambúrguer fotografado em estúdio para cardápio digital">
+        <div class="card-in">
+          <p class="eyebrow">Fotografia de produto + vídeo</p>
+          <h3>Lake Burguer</h3>
+          <div class="tags"><span class="tag">Foto</span><span class="tag">Vídeo</span></div>
+          <span class="golink">Ver projeto <span class="ar">→</span></span>
+        </div>
+      </a>
+      <a class="card rv" href="https://galleries.vidflow.co/t71s510w" target="_blank" rel="noopener">
+        <img src="assets/p-move.jpg" alt="Participantes do evento Move x Runaholic">
+        <div class="card-in">
+          <p class="eyebrow">Cobertura de evento</p>
+          <h3>Move x Runaholic</h3>
+          <div class="tags"><span class="tag">Foto</span><span class="tag">Vídeo</span><span class="tag">Drone</span></div>
+          <span class="golink">Ver projeto <span class="ar">→</span></span>
+        </div>
+      </a>
+      <a class="card wide rv" href="https://galleries.vidflow.co/sf8g8mg0" target="_blank" rel="noopener">
+        <img src="assets/p-natalia.jpg" alt="Retrato da Dra. Natalia Rezende em evento">
+        <div class="card-in">
+          <p class="eyebrow">Conteúdo e campanhas</p>
+          <h3>Dra. Natalia Rezende</h3>
+          <div class="tags"><span class="tag">Foto</span><span class="tag">Vídeo</span></div>
+          <span class="golink">Ver projeto <span class="ar">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 06 FRASE TRANSIÇÃO -->
+<section class="statement" style="margin-top:clamp(56px,8vw,96px)" data-step="06 · Frase">
+  <div class="wrap">
+    <p class="disp rv"><em>Imagem que chama atenção.</em><br>Conteúdo que <b>comunica valor.</b></p>
+  </div>
+</section>
+
+<!-- 07 SERVIÇOS -->
+<section class="services" id="servicos" data-step="07 · Serviços">
+  <div class="wrap sechead rv">
+    <p class="eyebrow"><b>02</b> / Serviços</p>
+    <h2>O que fazemos</h2>
+    <p class="lede">Soluções audiovisuais pensadas para comunicar, valorizar e fortalecer sua marca.</p>
+  </div>
+  <div class="wrap">
+    <div class="svc-grid rv">
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5h3.2l1.4-2h8.8l1.4 2H21v11H3z"/><circle cx="12" cy="13" r="3.6"/></svg>
+        <h3>Fotografia</h3>
+        <p>Imagens que valorizam produtos, ambientes, equipes e experiências.</p>
+        <ul><li>Produto</li><li>Eventos</li><li>Empresas</li><li>Redes sociais</li></ul>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18v12H3z"/><path d="M3 8l2.6-4h3L6 8m4 0l2.6-4h3L13 8"/></svg>
+        <h3>Produção de vídeo</h3>
+        <p>Conteúdos criados para captar atenção, comunicar valor e gerar conexão.</p>
+        <ul><li>Institucional</li><li>Reels</li><li>Promocional</li><li>Eventos</li></ul>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 8.5h7v7h-7z"/><path d="M8.5 8.5L5 5m10.5 3.5L19 5M8.5 15.5L5 19m10.5-3.5L19 19"/><circle cx="4" cy="4" r="1.8"/><circle cx="20" cy="4" r="1.8"/><circle cx="4" cy="20" r="1.8"/><circle cx="20" cy="20" r="1.8"/></svg>
+        <h3>Drone</h3>
+        <p>Perspectivas exclusivas que agregam impacto visual e sofisticação.</p>
+        <ul><li>Eventos</li><li>Imobiliário</li><li>Espaços</li><li>Empresas</li></ul>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10.6 5.4h2.8"/><circle cx="12" cy="18" r="1"/></svg>
+        <h3>Storymaker</h3>
+        <p>Cobertura em tempo real para manter seu público conectado durante o evento.</p>
+        <ul><li>Eventos</li><li>Stories</li><li>Conteúdo</li><li>Cobertura</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 SOBRE -->
+<section class="about" id="sobre" data-step="08 · Sobre">
+  <div class="about-img"><img src="assets/sobre.jpg" alt="Operação de drone durante captação em campo"></div>
+  <div class="about-txt rv">
+    <p class="eyebrow"><b>03</b> / Sobre</p>
+    <h2>Mais do que produzir imagens. Criamos percepção.</h2>
+    <p>A onkai.films nasceu com o propósito de ajudar empresas e profissionais a se comunicarem de forma mais forte, moderna e relevante através do audiovisual.</p>
+    <p>Atuamos em São José dos Campos e região, atendendo também projetos em outras localidades — restaurantes, bares, imobiliárias, eventos e empresas.</p>
+  </div>
+</section>
+
+<!-- 09 ESTRUTURA -->
+<section class="structure" data-step="09 · Estrutura">
+  <div class="wrap structure-in">
+    <div class="rv" style="display:grid;gap:14px">
+      <p class="eyebrow"><b>04</b> / Estrutura</p>
+      <h2 style="font-size:clamp(1.4rem,2.8vw,2rem)">Estrutura profissional. Resultado profissional.</h2>
+      <p style="font-size:.875rem;color:#5E5A54;max-width:34ch">Equipamento próprio, sem repasse de custo de aluguel para o cliente.</p>
+    </div>
+    <div class="stats rv">
+      <div class="stat"><span class="n">01</span><h3>Qualidade</h3><p>Equipamentos e soluções profissionais para diferentes necessidades.</p></div>
+      <div class="stat"><span class="n">02</span><h3>Versatilidade</h3><p>Câmera, drone, iluminação, áudio e um conjunto de lentes.</p></div>
+      <div class="stat"><span class="n">03</span><h3>Planejamento</h3><p>Cada produção é pensada de acordo com o objetivo do cliente.</p></div>
+      <div class="stat"><span class="n">04</span><h3>Detalhes</h3><p>Do planejamento à entrega, cada etapa recebe atenção.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 PROCESSO -->
+<section class="process" data-step="10 · Processo">
+  <div class="wrap process-in">
+    <div class="rv" style="display:grid;gap:14px">
+      <p class="eyebrow"><b>05</b> / Processo</p>
+      <h2 style="font-size:clamp(1.4rem,2.8vw,2rem)">Do briefing à entrega.</h2>
+      <p class="lede" style="max-width:34ch">Prazo combinado antes de começar. Sem letra miúda.</p>
+    </div>
+    <div class="steps rv" id="steps">
+      <div class="step"><span class="n">01</span><i class="rail"></i><h3>Briefing</h3><p>Entendemos o negócio e o que o conteúdo precisa fazer por ele.</p></div>
+      <div class="step"><span class="n">02</span><i class="rail"></i><h3>Planejamento</h3><p>Definimos roteiro, cronograma e o que será captado.</p></div>
+      <div class="step"><span class="n">03</span><i class="rail"></i><h3>Produção</h3><p>Captação com equipamento profissional, no dia combinado.</p></div>
+      <div class="step"><span class="n">04</span><i class="rail"></i><h3>Edição</h3><p>Tratamento de imagem, cor e edição finalizada.</p></div>
+      <div class="step"><span class="n">05</span><i class="rail"></i><h3>Entrega</h3><p>Conteúdo pronto para uso, no prazo combinado.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 CTA FINAL -->
+<section class="cta" data-step="11 · CTA">
+  <img src="assets/cta.jpg" alt="Pôr do sol visto de dentro do veleiro">
+  <div class="wrap cta-in rv">
+    <p class="eyebrow"><b>06</b> / Vamos criar</p>
+    <h2>Sua marca tem uma história.<br>Vamos transformá-la em imagem.</h2>
+    <a class="btn solid" href="#contato">Solicitar orçamento <span class="ar">→</span></a>
+  </div>
+</section>
+
+<!-- 12 FORMULÁRIO -->
+<section class="contact" id="contato" data-step="12 · Contato">
+  <div class="wrap contact-in">
+    <div class="rv" style="display:grid;gap:14px">
+      <h2 style="font-size:clamp(1.4rem,2.8vw,2rem)">Vamos conversar?</h2>
+      <p class="lede" style="max-width:32ch">Conte um pouco sobre o seu projeto e entraremos em contato.</p>
+    </div>
+    <form class="rv" id="form" novalidate>
+      <div class="f"><label for="nome">Nome</label><input id="nome" name="nome" placeholder="Seu nome" required><span class="msg"></span></div>
+      <div class="f"><label for="empresa">Empresa</label><input id="empresa" name="empresa" placeholder="Nome da empresa"><span class="msg"></span></div>
+      <div class="f"><label for="contato">E-mail / WhatsApp</label><input id="contato" name="contato" placeholder="Como falamos com você" required><span class="msg"></span></div>
+      <div class="f"><label for="tipo">Tipo de projeto</label>
+        <select id="tipo" name="tipo" required>
+          <option value="">Selecione</option>
+          <option>Fotografia de produto</option>
+          <option>Cobertura de evento</option>
+          <option>Vídeo institucional</option>
+          <option>Imobiliário / drone</option>
+          <option>Conteúdo para redes sociais</option>
+          <option>Outro</option>
+        </select><span class="msg"></span>
+      </div>
+      <div class="f"><label for="data">Data do projeto</label><input id="data" name="data" placeholder="DD / MM / AAAA"><span class="msg"></span></div>
+      <div class="f"><label for="local">Cidade</label><input id="local" name="local" placeholder="Onde acontece"><span class="msg"></span></div>
+      <div class="f span3"><label for="msg">Conte um pouco sobre o projeto</label><textarea id="msg" name="msg" placeholder="Evento, empresa, produto ou conteúdo que você precisa produzir" required></textarea><span class="msg"></span></div>
+      <div class="f-actions">
+        <button class="btn solid" type="submit">Enviar solicitação <span class="ar">→</span></button>
+        <span class="sent" id="sent">Solicitação registrada — protótipo, ainda sem envio real</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- 13 FOOTER -->
+<footer data-step="13 · Footer">
+  <div class="wrap foot">
+    <div>
+      <img class="logo" src="assets/logo.png" alt="onkai.films">
+      <p class="tag-line">Imagens que conectam.<br>Conteúdos que geram resultados.</p>
+    </div>
+    <nav class="socials">
+      <a href="https://instagram.com/onkai.films" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/></svg> Instagram</a>
+      <a href="https://wa.me/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.4-4.3A8.5 8.5 0 1 1 20.5 11.7z"/><path d="M8.9 9.3c.3 2.6 2.6 4.9 5.2 5.2l1-1.4 1.9.8-.4 1.7c-3.7.6-8.2-3.9-7.6-7.6l1.7-.4.8 1.9z" stroke="none" fill="currentColor"/></svg> WhatsApp</a>
+      <a href="mailto:contatokaiobrazao@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.6 6.2 12 12.6l8.4-6.4"/></svg> E-mail</a>
+    </nav>
+    <p class="copy">© 2026 onkai.films</p>
+  </div>
+</footer>
+
+<button class="annot" id="annot" aria-pressed="false"><span class="dot"></span> Anotações</button>
+
+<script>
+(function(){
+  var nav=document.getElementById("nav");
+  var onScroll=function(){nav.classList.toggle("stuck",window.scrollY>40)};
+  onScroll();window.addEventListener("scroll",onScroll,{passive:true});
+
+  var burger=document.getElementById("burger");
+  var drawer=document.getElementById("drawer");
+  burger.addEventListener("click",function(){
+    var open=document.body.classList.toggle("menu");
+    burger.setAttribute("aria-expanded",String(open));
+    burger.setAttribute("aria-label",open?"Fechar menu":"Abrir menu");
+  });
+  drawer.addEventListener("click",function(e){
+    if(e.target.tagName==="A"){document.body.classList.remove("menu");burger.setAttribute("aria-expanded","false")}
+  });
+
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var rvs=document.querySelectorAll(".rv");
+  if(reduce||!("IntersectionObserver" in window)){
+    rvs.forEach(function(el){el.classList.add("in")});
+    var st=document.getElementById("steps");if(st)st.classList.add("in");
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}});
+    },{rootMargin:"0px 0px -12% 0px",threshold:.12});
+    rvs.forEach(function(el){io.observe(el)});
+  }
+
+  var ids=["projetos","servicos","sobre","contato"];
+  var links={};
+  ids.forEach(function(id){
+    var a=document.querySelector('.nav-links a[href="#'+id+'"]');
+    if(a)links[id]=a;
+  });
+  if("IntersectionObserver" in window){
+    var spy=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var a=links[e.target.id];
+        if(a)a.setAttribute("aria-current",e.isIntersecting?"true":"false");
+      });
+    },{rootMargin:"-45% 0px -50% 0px"});
+    ids.forEach(function(id){var s=document.getElementById(id);if(s)spy.observe(s)});
+  }
+
+  var annot=document.getElementById("annot");
+  annot.addEventListener("click",function(){
+    var on=document.body.classList.toggle("annot-on");
+    annot.setAttribute("aria-pressed",String(on));
+  });
+
+  var form=document.getElementById("form");
+  var sent=document.getElementById("sent");
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var ok=true;
+    form.querySelectorAll("[required]").forEach(function(el){
+      var f=el.closest(".f");
+      var bad=!el.value.trim();
+      f.classList.toggle("err",bad);
+      f.querySelector(".msg").textContent=bad?"Preencha este campo":"";
+      if(bad)ok=false;
+    });
+    if(!ok){sent.classList.remove("on");return}
+    sent.classList.add("on");
+    form.reset();
+  });
+  form.addEventListener("input",function(e){
+    var f=e.target.closest(".f");
+    if(f&&f.classList.contains("err")&&e.target.value.trim()){
+      f.classList.remove("err");f.querySelector(".msg").textContent="";
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
