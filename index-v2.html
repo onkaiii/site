@@ -317,6 +317,7 @@ input,select,textarea{
 }
 select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--dim) 50%),linear-gradient(135deg,var(--dim) 50%,transparent 50%);background-position:calc(100% - 11px) 18px,calc(100% - 6px) 18px;background-size:5px 5px;background-repeat:no-repeat}
 select option{background:var(--ink-2);color:var(--text)}
+select optgroup{background:var(--ink-2);color:var(--dim);font-style:normal;font-weight:500}
 textarea{resize:vertical;min-height:74px}
 input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--sun)}
 input::placeholder,textarea::placeholder{color:#5B5955}
@@ -617,11 +618,20 @@ body.annot-on [data-step]::before{opacity:1;transform:none}
       <div class="f"><label for="tipo">Tipo de projeto</label>
         <select id="tipo" name="tipo" required>
           <option value="">Selecione</option>
-          <option>Fotografia de produto</option>
-          <option>Cobertura de evento</option>
-          <option>Vídeo institucional</option>
-          <option>Imobiliário / drone</option>
-          <option>Conteúdo para redes sociais</option>
+          <optgroup label="Empresas e marcas">
+            <option>Fotografia de produto</option>
+            <option>Cobertura de evento</option>
+            <option>Vídeo institucional</option>
+            <option>Imobiliário / drone</option>
+            <option>Conteúdo para redes sociais</option>
+          </optgroup>
+          <optgroup label="Pessoas e criadores">
+            <option>Ensaio pessoal</option>
+            <option>Retrato</option>
+            <option>Evento particular (aniversário, casamento, etc.)</option>
+            <option>Marca pessoal</option>
+            <option>Criador de conteúdo</option>
+          </optgroup>
           <option>Outro</option>
         </select><span class="msg"></span>
       </div>
