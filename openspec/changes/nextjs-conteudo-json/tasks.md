@@ -76,4 +76,4 @@
 
 - [x] 9.1 Escrever `content/LEIA-ME.md` explicando cada bloco e cada campo, quais são obrigatórios, como adicionar um projeto com a imagem de capa, e onde ver a falha de build quando o conteúdo está inválido
 - [x] 9.2 Registrar em `openspec/config.yaml` o contexto do projeto: Next com App Router, TypeScript, conteúdo em JSON com chaves em português, hospedagem na Vercel
-- [ ] 9.3 Commitar em branch própria, sem tocar nos quatro HTML nem no `build.py`
+- [x] 9.3 Commitar em branch própria, sem tocar nos quatro HTML nem no `build.py`
