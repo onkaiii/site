@@ -1,5 +1,33 @@
 schema: spec-driven
 
+context: |
+  Site institucional da onkai.films, produtora audiovisual de Sao Jose dos Campos.
+
+  Stack: Next.js 16 com App Router, React 19, TypeScript, Zod 4. Hospedagem na
+  Vercel. Sem framework de CSS: o estilo vive em app/globals.css, portado do
+  prototipo aprovado pelo cliente.
+
+  Todo o conteudo editavel fica em content/site.json, com chaves em portugues,
+  porque quem edita o arquivo e o cliente e nao um desenvolvedor. O contrato
+  esta em content/schema.ts (Zod), unica fonte dos tipos e do
+  content/site.schema.json gerado. Nenhum valor de conteudo carrega HTML.
+
+  O build valida o conteudo antes de compilar (npm run build roda
+  validate:conteudo primeiro), entao conteudo invalido derruba o build e a
+  Vercel nao publica: o site no ar continua no ar.
+
+  Ficam no codigo, de proposito: logo, icones, paleta, tipografia, a ordem das
+  secoes e o modo de anotacoes. Icones sao referenciados por nome contra um
+  enum fechado.
+
+  O formulario nao tem backend: monta a mensagem e abre o WhatsApp do cliente
+  com o texto pronto.
+
+  index.html, index-v2.html, onkai-prototipo*.html, build.py e src/ sao a
+  referencia visual congelada aprovada pelo cliente. Nao alterar.
+
+  Comentarios de codigo e mensagens de commit em portugues, sem acento.
+
 # Project context (optional)
 # This is shown to AI when creating artifacts.
 # Add your tech stack, conventions, style guides, domain knowledge, etc.

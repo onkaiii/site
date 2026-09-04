@@ -41,6 +41,8 @@ Decisão: o schema é escrito em Zod, que dá de graça os tipos TypeScript do c
 
 Alternativa descartada: **JSON Schema à mão com ajv**. Evita uma dependência, mas obriga a manter tipos TypeScript em paralelo e deixa dois arquivos para atualizar a cada campo novo.
 
+Refinamento durante a implementação: o Zod 4 traz `z.toJSONSchema()` e `z.prettifyError()` embutidos, então a geração do JSON Schema e a formatação legível dos erros não precisam de biblioteca extra. O `zod-to-json-schema`, que mira o Zod 3, foi instalado e removido.
+
 As quatro verificações do spec se dividem assim: parse e schema saem do Zod; existência de imagem e validade de URL são refinamentos adicionais, porque nenhum schema sabe o que existe em `public/`.
 
 ### Validação dentro do build, não numa Action separada

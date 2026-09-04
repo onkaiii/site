@@ -1,0 +1,241 @@
+{
+  "$schema": "./site.schema.json",
+
+  "site": {
+    "nome": "onkai.films",
+    "seo": {
+      "titulo": "onkai.films",
+      "descricao": "Foto, vídeo e drone para negócios que não podem parecer amadores. Audiovisual estratégico em São José dos Campos e região."
+    }
+  },
+
+  "contato": {
+    "instagram": "https://www.instagram.com/onkai.films/",
+    "whatsapp": "5512987032908",
+    "email": "contatokaiobrazao@gmail.com"
+  },
+
+  "navegacao": [
+    { "rotulo": "Projetos", "destino": "projetos" },
+    { "rotulo": "Serviços", "destino": "servicos" },
+    { "rotulo": "Sobre", "destino": "sobre" },
+    { "rotulo": "Contato", "destino": "contato" }
+  ],
+
+  "hero": {
+    "marca": "onkai.films",
+    "complemento": "Audiovisual estratégico",
+    "titulo": "Da ideia ao corte final, sempre (on)line com você.",
+    "subtitulo": "Foto, vídeo e drone para negócios que não podem parecer amadores.",
+    "botao_primario": { "rotulo": "Ver projetos", "destino": "projetos" },
+    "botao_secundario": { "rotulo": "Solicitar orçamento", "destino": "contato" },
+    "dica_de_rolagem": "Role",
+    "imagem": {
+      "arquivo": "/img/hero.jpg",
+      "alt": "Veleiro ao pôr do sol captado com drone em Ilhabela"
+    }
+  },
+
+  "frase_impacto": {
+    "linhas": [
+      { "texto": "Sua marca merece mais do que apenas aparecer." },
+      { "texto": "Ela precisa impactar.", "esmaecido": true }
+    ]
+  },
+
+  "projetos": {
+    "rotulo": "Projetos",
+    "titulo": "Trabalhos selecionados",
+    "descricao": "Uma seleção de projetos desenvolvidos para diferentes marcas, eventos e segmentos. Cada capa abre a galeria completa em alta resolução.",
+    "itens": [
+      {
+        "categoria": "Semana Internacional da Vela",
+        "titulo": "SIVI Ilhabela",
+        "tags": ["Foto", "Vídeo", "Drone"],
+        "galeria": "https://galleries.vidflow.co/omklh1gl",
+        "imagem": {
+          "arquivo": "/img/p-sivi.jpg",
+          "alt": "Vista aérea do público na estrutura do evento SIVI em Ilhabela"
+        }
+      },
+      {
+        "categoria": "Cobertura a bordo",
+        "titulo": "Da Vinci Sailing Team",
+        "tags": ["Foto", "Vídeo", "Drone"],
+        "galeria": "https://galleries.vidflow.co/wccr69le",
+        "imagem": {
+          "arquivo": "/img/p-davinci.jpg",
+          "alt": "Tripulação do Da Vinci Sailing Team trabalhando a bordo"
+        }
+      },
+      {
+        "categoria": "Fotografia de produto + vídeo",
+        "titulo": "Lake Burguer",
+        "tags": ["Foto", "Vídeo"],
+        "galeria": "https://galleries.vidflow.co/ebfg8tv3",
+        "imagem": {
+          "arquivo": "/img/p-lake.jpg",
+          "alt": "Hambúrguer fotografado em estúdio para cardápio digital"
+        }
+      },
+      {
+        "categoria": "Cobertura de evento",
+        "titulo": "Move x Runaholic",
+        "tags": ["Foto", "Vídeo", "Drone"],
+        "galeria": "https://galleries.vidflow.co/t71s510w",
+        "imagem": {
+          "arquivo": "/img/p-move.jpg",
+          "alt": "Participantes do evento Move x Runaholic"
+        }
+      },
+      {
+        "categoria": "Conteúdo e campanhas",
+        "titulo": "Dra. Natalia Rezende",
+        "tags": ["Foto", "Vídeo"],
+        "galeria": "https://galleries.vidflow.co/sf8g8mg0",
+        "imagem": {
+          "arquivo": "/img/p-natalia.jpg",
+          "alt": "Retrato da Dra. Natalia Rezende em evento"
+        }
+      }
+    ]
+  },
+
+  "frase_transicao": {
+    "linhas": [
+      { "texto": "Marcas que querem ser lembradas,", "esmaecido": true },
+      { "texto": "investem em conteúdo que", "destaque": "comunica valor." }
+    ]
+  },
+
+  "servicos": {
+    "rotulo": "Serviços",
+    "titulo": "O que fazemos",
+    "descricao": "Soluções audiovisuais pensadas para comunicar, valorizar e fortalecer sua marca.",
+    "itens": [
+      {
+        "icone": "fotografia",
+        "titulo": "Fotografia",
+        "descricao": "Imagens que valorizam produtos, ambientes, equipes e experiências.",
+        "topicos": ["Produto", "Eventos", "Empresas", "Redes sociais"]
+      },
+      {
+        "icone": "video",
+        "titulo": "Produção de vídeo",
+        "descricao": "Conteúdos criados para captar atenção, comunicar valor e gerar conexão.",
+        "topicos": ["Institucional", "Reels", "Promocional", "Eventos"]
+      },
+      {
+        "icone": "drone",
+        "titulo": "Drone",
+        "descricao": "Perspectivas exclusivas que agregam impacto visual e sofisticação.",
+        "topicos": ["Eventos", "Imobiliário", "Espaços", "Empresas"]
+      },
+      {
+        "icone": "storymaker",
+        "titulo": "Storymaker",
+        "descricao": "Cobertura em tempo real para manter seu público conectado durante o evento.",
+        "topicos": ["Eventos", "Stories", "Conteúdo", "Cobertura"]
+      }
+    ]
+  },
+
+  "sobre": {
+    "rotulo": "Sobre",
+    "titulo": "Mais do que produzir imagens. Criamos percepção.",
+    "paragrafos": [
+      "A onkai.films nasceu para ajudar empresas e profissionais a se comunicarem de forma mais forte, moderna e relevante através do audiovisual.",
+      "Equipamento de ponta, prazo combinado antes de começar e entrega pensada para o uso real — sem letra miúda. Atuamos em São José dos Campos e região, com projetos também em outras localidades."
+    ],
+    "imagem": {
+      "arquivo": "/img/sobre.jpg",
+      "alt": "Operação de drone durante captação em campo"
+    }
+  },
+
+  "estrutura": {
+    "rotulo": "Estrutura",
+    "titulo": "Estrutura profissional. Resultado profissional.",
+    "descricao": "Equipamento próprio, sem repasse de custo de aluguel para o cliente.",
+    "itens": [
+      { "titulo": "Qualidade", "descricao": "Equipamentos e soluções profissionais para diferentes necessidades." },
+      { "titulo": "Versatilidade", "descricao": "Câmera, drone, iluminação, áudio e um conjunto de lentes." },
+      { "titulo": "Planejamento", "descricao": "Cada produção é pensada de acordo com o objetivo do cliente." },
+      { "titulo": "Detalhes", "descricao": "Do planejamento à entrega, cada etapa recebe atenção." }
+    ]
+  },
+
+  "processo": {
+    "rotulo": "Processo",
+    "titulo": "Do briefing à entrega.",
+    "descricao": "Prazo combinado antes de começar. Sem letra miúda.",
+    "etapas": [
+      { "titulo": "Briefing", "descricao": "Entendemos o negócio e o que o conteúdo precisa fazer por ele." },
+      { "titulo": "Planejamento", "descricao": "Definimos roteiro, cronograma e o que será captado." },
+      { "titulo": "Produção", "descricao": "Captação com equipamento profissional, no dia combinado." },
+      { "titulo": "Edição", "descricao": "Tratamento de imagem, cor e edição finalizada." },
+      { "titulo": "Entrega", "descricao": "Conteúdo pronto para uso, no prazo combinado." }
+    ]
+  },
+
+  "chamada_final": {
+    "rotulo": "Vamos criar",
+    "titulo": "Sua marca tem uma história. Vamos transformá-la em imagem.",
+    "botao": { "rotulo": "Solicitar orçamento", "destino": "contato" },
+    "imagem": {
+      "arquivo": "/img/cta.jpg",
+      "alt": "Pôr do sol visto de dentro do veleiro"
+    }
+  },
+
+  "formulario": {
+    "titulo": "Vamos conversar?",
+    "descricao": "Conte um pouco sobre o seu projeto e entraremos em contato.",
+    "campos": {
+      "nome": { "rotulo": "Nome", "placeholder": "Seu nome" },
+      "empresa": { "rotulo": "Empresa / rede social", "placeholder": "Empresa ou @ do seu perfil" },
+      "contato": { "rotulo": "E-mail / WhatsApp", "placeholder": "Como falamos com você" },
+      "tipo": { "rotulo": "Tipo de projeto", "placeholder": "Selecione" },
+      "data": { "rotulo": "Data do projeto", "placeholder": "DD / MM / AAAA" },
+      "cidade": { "rotulo": "Cidade", "placeholder": "Onde acontece" },
+      "mensagem": {
+        "rotulo": "Conte um pouco sobre o projeto",
+        "placeholder": "Conte o que você quer registrar — de um evento pessoal a um projeto de marca"
+      }
+    },
+    "tipos_de_projeto": {
+      "grupos": [
+        {
+          "rotulo": "Empresas e marcas",
+          "opcoes": [
+            "Fotografia de produto",
+            "Cobertura de evento",
+            "Vídeo institucional",
+            "Imobiliário / drone",
+            "Conteúdo para redes sociais"
+          ]
+        },
+        {
+          "rotulo": "Pessoas e criadores",
+          "opcoes": [
+            "Ensaio pessoal",
+            "Retrato",
+            "Evento particular (aniversário, casamento, etc.)",
+            "Marca pessoal",
+            "Criador de conteúdo"
+          ]
+        }
+      ],
+      "avulsas": ["Outro"]
+    },
+    "botao": "Enviar pelo WhatsApp",
+    "erro_de_campo": "Preencha este campo",
+    "saudacao": "Olá! Vim pelo site da onkai.films e quero solicitar um orçamento.",
+    "confirmacao": "Abrindo o WhatsApp com sua mensagem",
+    "fallback": "Não abriu? Toque aqui para falar no WhatsApp"
+  },
+
+  "rodape": {
+    "linhas": ["Imagens que conectam.", "Conteúdos que geram resultados."]
+  }
+}

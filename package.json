@@ -1,0 +1,25 @@
+{
+  "name": "onkai-films",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "npm run validate:conteudo && next build",
+    "start": "next start",
+    "validate:conteudo": "tsx scripts/validar-conteudo.ts",
+    "schema:gerar": "tsx scripts/gerar-schema.ts",
+    "test": "tsx --test scripts/*.test.ts"
+  },
+  "dependencies": {
+    "next": "^16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}

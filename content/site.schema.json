@@ -1,0 +1,863 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "site": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seo": {
+          "type": "object",
+          "properties": {
+            "titulo": {
+              "type": "string",
+              "minLength": 1
+            },
+            "descricao": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "titulo",
+            "descricao"
+          ]
+        }
+      },
+      "required": [
+        "nome",
+        "seo"
+      ]
+    },
+    "contato": {
+      "type": "object",
+      "properties": {
+        "instagram": {
+          "type": "string",
+          "minLength": 1
+        },
+        "whatsapp": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^\\d{12,13}$",
+          "description": "numero cru, sem + nem espaco; o codigo monta os links a partir dele"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+        }
+      },
+      "required": [
+        "instagram",
+        "whatsapp",
+        "email"
+      ]
+    },
+    "navegacao": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rotulo": {
+            "type": "string",
+            "minLength": 1
+          },
+          "destino": {
+            "type": "string",
+            "enum": [
+              "topo",
+              "projetos",
+              "servicos",
+              "sobre",
+              "contato"
+            ]
+          }
+        },
+        "required": [
+          "rotulo",
+          "destino"
+        ]
+      }
+    },
+    "hero": {
+      "type": "object",
+      "properties": {
+        "marca": {
+          "type": "string",
+          "minLength": 1,
+          "description": "primeira parte do rótulo, em destaque"
+        },
+        "complemento": {
+          "type": "string",
+          "minLength": 1,
+          "description": "segunda parte do rótulo"
+        },
+        "titulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtitulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "botao_primario": {
+          "type": "object",
+          "properties": {
+            "rotulo": {
+              "type": "string",
+              "minLength": 1
+            },
+            "destino": {
+              "type": "string",
+              "enum": [
+                "topo",
+                "projetos",
+                "servicos",
+                "sobre",
+                "contato"
+              ]
+            }
+          },
+          "required": [
+            "rotulo",
+            "destino"
+          ]
+        },
+        "botao_secundario": {
+          "type": "object",
+          "properties": {
+            "rotulo": {
+              "type": "string",
+              "minLength": 1
+            },
+            "destino": {
+              "type": "string",
+              "enum": [
+                "topo",
+                "projetos",
+                "servicos",
+                "sobre",
+                "contato"
+              ]
+            }
+          },
+          "required": [
+            "rotulo",
+            "destino"
+          ]
+        },
+        "dica_de_rolagem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "imagem": {
+          "type": "object",
+          "properties": {
+            "arquivo": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^\\/img\\/[\\w.-]+$"
+            },
+            "alt": {
+              "type": "string",
+              "minLength": 1,
+              "description": "descrição da imagem para leitor de tela"
+            }
+          },
+          "required": [
+            "arquivo",
+            "alt"
+          ]
+        }
+      },
+      "required": [
+        "marca",
+        "complemento",
+        "titulo",
+        "subtitulo",
+        "botao_primario",
+        "botao_secundario",
+        "dica_de_rolagem",
+        "imagem"
+      ]
+    },
+    "frase_impacto": {
+      "type": "object",
+      "properties": {
+        "linhas": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "texto": {
+                "type": "string",
+                "minLength": 1
+              },
+              "esmaecido": {
+                "type": "boolean"
+              },
+              "destaque": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "texto"
+            ]
+          }
+        }
+      },
+      "required": [
+        "linhas"
+      ]
+    },
+    "projetos": {
+      "type": "object",
+      "properties": {
+        "rotulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "titulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "descricao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "itens": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "categoria": {
+                "type": "string",
+                "minLength": 1
+              },
+              "titulo": {
+                "type": "string",
+                "minLength": 1
+              },
+              "tags": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "galeria": {
+                "type": "string",
+                "minLength": 1
+              },
+              "imagem": {
+                "type": "object",
+                "properties": {
+                  "arquivo": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "^\\/img\\/[\\w.-]+$"
+                  },
+                  "alt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "descrição da imagem para leitor de tela"
+                  }
+                },
+                "required": [
+                  "arquivo",
+                  "alt"
+                ]
+              },
+              "cliente": {
+                "type": "string",
+                "minLength": 1
+              },
+              "data": {
+                "type": "string",
+                "minLength": 1
+              },
+              "local": {
+                "type": "string",
+                "minLength": 1
+              },
+              "perfil": {
+                "type": "string",
+                "minLength": 1
+              },
+              "descricao": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "categoria",
+              "titulo",
+              "tags",
+              "galeria",
+              "imagem"
+            ]
+          }
+        }
+      },
+      "required": [
+        "rotulo",
+        "titulo",
+        "descricao",
+        "itens"
+      ]
+    },
+    "frase_transicao": {
+      "type": "object",
+      "properties": {
+        "linhas": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "texto": {
+                "type": "string",
+                "minLength": 1
+              },
+              "esmaecido": {
+                "type": "boolean"
+              },
+              "destaque": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "texto"
+            ]
+          }
+        }
+      },
+      "required": [
+        "linhas"
+      ]
+    },
+    "servicos": {
+      "type": "object",
+      "properties": {
+        "rotulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "titulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "descricao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "itens": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "icone": {
+                "type": "string",
+                "enum": [
+                  "fotografia",
+                  "video",
+                  "drone",
+                  "storymaker"
+                ]
+              },
+              "titulo": {
+                "type": "string",
+                "minLength": 1
+              },
+              "descricao": {
+                "type": "string",
+                "minLength": 1
+              },
+              "topicos": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "icone",
+              "titulo",
+              "descricao",
+              "topicos"
+            ]
+          }
+        }
+      },
+      "required": [
+        "rotulo",
+        "titulo",
+        "descricao",
+        "itens"
+      ]
+    },
+    "sobre": {
+      "type": "object",
+      "properties": {
+        "rotulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "titulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "paragrafos": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "imagem": {
+          "type": "object",
+          "properties": {
+            "arquivo": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^\\/img\\/[\\w.-]+$"
+            },
+            "alt": {
+              "type": "string",
+              "minLength": 1,
+              "description": "descrição da imagem para leitor de tela"
+            }
+          },
+          "required": [
+            "arquivo",
+            "alt"
+          ]
+        }
+      },
+      "required": [
+        "rotulo",
+        "titulo",
+        "paragrafos",
+        "imagem"
+      ]
+    },
+    "estrutura": {
+      "type": "object",
+      "properties": {
+        "rotulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "titulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "descricao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "itens": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "titulo": {
+                "type": "string",
+                "minLength": 1
+              },
+              "descricao": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "titulo",
+              "descricao"
+            ]
+          }
+        }
+      },
+      "required": [
+        "rotulo",
+        "titulo",
+        "descricao",
+        "itens"
+      ]
+    },
+    "processo": {
+      "type": "object",
+      "properties": {
+        "rotulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "titulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "descricao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "etapas": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "titulo": {
+                "type": "string",
+                "minLength": 1
+              },
+              "descricao": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "titulo",
+              "descricao"
+            ]
+          }
+        }
+      },
+      "required": [
+        "rotulo",
+        "titulo",
+        "descricao",
+        "etapas"
+      ]
+    },
+    "chamada_final": {
+      "type": "object",
+      "properties": {
+        "rotulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "titulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "botao": {
+          "type": "object",
+          "properties": {
+            "rotulo": {
+              "type": "string",
+              "minLength": 1
+            },
+            "destino": {
+              "type": "string",
+              "enum": [
+                "topo",
+                "projetos",
+                "servicos",
+                "sobre",
+                "contato"
+              ]
+            }
+          },
+          "required": [
+            "rotulo",
+            "destino"
+          ]
+        },
+        "imagem": {
+          "type": "object",
+          "properties": {
+            "arquivo": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^\\/img\\/[\\w.-]+$"
+            },
+            "alt": {
+              "type": "string",
+              "minLength": 1,
+              "description": "descrição da imagem para leitor de tela"
+            }
+          },
+          "required": [
+            "arquivo",
+            "alt"
+          ]
+        }
+      },
+      "required": [
+        "rotulo",
+        "titulo",
+        "botao",
+        "imagem"
+      ]
+    },
+    "formulario": {
+      "type": "object",
+      "properties": {
+        "titulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "descricao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "campos": {
+          "type": "object",
+          "properties": {
+            "nome": {
+              "type": "object",
+              "properties": {
+                "rotulo": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "placeholder": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "rotulo",
+                "placeholder"
+              ]
+            },
+            "empresa": {
+              "type": "object",
+              "properties": {
+                "rotulo": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "placeholder": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "rotulo",
+                "placeholder"
+              ]
+            },
+            "contato": {
+              "type": "object",
+              "properties": {
+                "rotulo": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "placeholder": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "rotulo",
+                "placeholder"
+              ]
+            },
+            "tipo": {
+              "type": "object",
+              "properties": {
+                "rotulo": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "placeholder": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "rotulo",
+                "placeholder"
+              ]
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "rotulo": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "placeholder": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "rotulo",
+                "placeholder"
+              ]
+            },
+            "cidade": {
+              "type": "object",
+              "properties": {
+                "rotulo": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "placeholder": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "rotulo",
+                "placeholder"
+              ]
+            },
+            "mensagem": {
+              "type": "object",
+              "properties": {
+                "rotulo": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "placeholder": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "rotulo",
+                "placeholder"
+              ]
+            }
+          },
+          "required": [
+            "nome",
+            "empresa",
+            "contato",
+            "tipo",
+            "data",
+            "cidade",
+            "mensagem"
+          ]
+        },
+        "tipos_de_projeto": {
+          "type": "object",
+          "properties": {
+            "grupos": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "rotulo": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "opcoes": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": [
+                  "rotulo",
+                  "opcoes"
+                ]
+              }
+            },
+            "avulsas": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "grupos"
+          ]
+        },
+        "botao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "erro_de_campo": {
+          "type": "string",
+          "minLength": 1,
+          "description": "mensagem exibida sob um campo obrigatório vazio"
+        },
+        "saudacao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confirmacao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "description": "texto do link quando o navegador bloqueia a nova aba"
+        }
+      },
+      "required": [
+        "titulo",
+        "descricao",
+        "campos",
+        "tipos_de_projeto",
+        "botao",
+        "erro_de_campo",
+        "saudacao",
+        "confirmacao",
+        "fallback"
+      ]
+    },
+    "rodape": {
+      "type": "object",
+      "properties": {
+        "linhas": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "linhas"
+      ]
+    }
+  },
+  "required": [
+    "site",
+    "contato",
+    "navegacao",
+    "hero",
+    "frase_impacto",
+    "projetos",
+    "frase_transicao",
+    "servicos",
+    "sobre",
+    "estrutura",
+    "processo",
+    "chamada_final",
+    "formulario",
+    "rodape"
+  ]
+}
