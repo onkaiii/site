@@ -1,6 +1,9 @@
 {
   "name": "onkai-films",
   "private": true,
+  "engines": {
+    "node": ">=20.11"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "npm run validate:conteudo && next build",
